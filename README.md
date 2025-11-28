@@ -85,6 +85,8 @@ spojuje auto a mechanika (zaměstnance),
 umožňuje zobrazit kompletní servisní historii konkrétního auta.
 
 Jak spolu tabulky spolupracují
+
+
 <img width="366" height="87" alt="image" src="https://github.com/user-attachments/assets/f3861695-1623-433c-98f6-78864b44d328" />
 
 
