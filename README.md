@@ -3,6 +3,12 @@ IT3 PVY – Vlastní relační databáze: Autobazar
 Tento projekt obsahuje návrh relační databáze pro správu autobazaru. Databáze zaznamenává informace o autech, jejich dostupnosti, zákaznících, zaměstnancích, prodejích a servisních úkonech.
 Cílem je vytvořit přehledný a normalizovaný systém, který pokrývá běžné procesy autobazaru — od vystavení aut k prodeji, přes evidenci zákazníků až po servisní historii každého vozu.
 
+
+Obrázek databazoveho modelu 
+
+<img width="1724" height="1065" alt="snimek_diagramu" src="https://github.com/user-attachments/assets/d5af04cf-7370-4b48-9038-db602c362cbc" />
+
+
 Popis databázového modelu
 
 Databáze modeluje reálné prostředí autosalonu/autobazaru, kde:
