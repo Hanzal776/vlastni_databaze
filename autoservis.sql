@@ -1,10 +1,20 @@
-Table zakaznik {
-  zakaznik_id int [pk]
-  prijmeni varchar(30)
+Table osoba {
+  osoba_id int [pk]
   jmeno varchar(30)
-  email varchar(50) [unique]
+  prijmeni varchar(30)
   telefon varchar(20) [unique]
+  email varchar(50) [unique]
+}
+
+Table zakaznik {
+  zakaznik_id int [pk, ref: > osoba.osoba_id]
   datum_registrace date
+}
+
+Table zamestnanec {
+  zamestnanec_id int [pk, ref: > osoba.osoba_id]
+  pozice enum('Prodejce', 'Mechanik', 'Vedouci', 'Administrativa')
+  mzda decimal(8,2)
 }
 
 Table auto {
@@ -19,15 +29,6 @@ Table auto {
   barva varchar(30)
   prevodovka enum('Manual', 'Automat')
   dostupne boolean
-}
-
-Table zamestnanec {
-  zamestnanec_id int [pk]
-  jmeno varchar(30)
-  prijmeni varchar(30)
-  pozice enum('Prodejce', 'Mechanik', 'Vedouci', 'Administrativa')
-  mzda decimal(8,2)
-  telefon varchar(20)
 }
 
 Table prodej {
