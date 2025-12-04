@@ -6,7 +6,7 @@ Cílem je vytvořit přehledný a normalizovaný systém, který pokrývá běž
 
 Obrázek databazoveho modelu 
 
-<img width="1724" height="1065" alt="snimek_diagramu" src="https://github.com/user-attachments/assets/d5af04cf-7370-4b48-9038-db602c362cbc" />
+<img width="1105" height="839" alt="image" src="https://github.com/user-attachments/assets/dee547e1-66f0-49f0-b122-58aa259c1597" />
 
 
 Popis databázového modelu
