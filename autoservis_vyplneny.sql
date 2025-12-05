@@ -60,7 +60,7 @@ CREATE TABLE `osoba` (
   `jmeno` varchar(30) NOT NULL,
   `prijmeni` varchar(30) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `telefon` varchar(20) DEFAULT NULL
+  `telefon` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -81,11 +81,11 @@ INSERT INTO `osoba` (`osoba_id`, `jmeno`, `prijmeni`, `email`, `telefon`) VALUES
 
 CREATE TABLE `prodej` (
   `prodej_id` int(11) NOT NULL,
-  `zakaznik_id` int(11) DEFAULT NULL,
-  `auto_id` int(11) DEFAULT NULL,
-  `zamestnanec_id` int(11) DEFAULT NULL,
-  `datum_prodeje` datetime DEFAULT NULL,
-  `cena_prodeje` decimal(10,2) DEFAULT NULL
+  `zakaznik_id` int(11) NOT NULL,
+  `auto_id` int(11) NOT NULL,
+  `zamestnanec_id` int(11) NOT NULL,
+  `datum_prodeje` datetime NOT NULL,
+  `cena_prodeje` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -104,12 +104,12 @@ INSERT INTO `prodej` (`prodej_id`, `zakaznik_id`, `auto_id`, `zamestnanec_id`, `
 
 CREATE TABLE `servis` (
   `servis_id` int(11) NOT NULL,
-  `auto_id` int(11) DEFAULT NULL,
-  `zamestnanec_id` int(11) DEFAULT NULL,
-  `popis` text DEFAULT NULL,
-  `cena` decimal(8,2) DEFAULT NULL,
-  `datum_servisu` datetime DEFAULT NULL,
-  `typ_ukonu` enum('Garanční','Oprava','Kontrola','Příprava na prodej') DEFAULT NULL
+  `auto_id` int(11) NOT NULL,
+  `zamestnanec_id` int(11) NOT NULL,
+  `popis` text NOT NULL,
+  `cena` decimal(8,2) NOT NULL,
+  `datum_servisu` datetime NOT NULL,
+  `typ_ukonu` enum('Garanční','Oprava','Kontrola','Příprava na prodej') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -128,7 +128,7 @@ INSERT INTO `servis` (`servis_id`, `auto_id`, `zamestnanec_id`, `popis`, `cena`,
 
 CREATE TABLE `zakaznik` (
   `zakaznik_id` int(11) NOT NULL,
-  `datum_registrace` date DEFAULT NULL
+  `datum_registrace` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -147,8 +147,8 @@ INSERT INTO `zakaznik` (`zakaznik_id`, `datum_registrace`) VALUES
 
 CREATE TABLE `zamestnanec` (
   `zamestnanec_id` int(11) NOT NULL,
-  `pozice` enum('Prodejce','Mechanik','Vedouci','Administrativa') DEFAULT NULL,
-  `mzda` decimal(8,2) DEFAULT NULL
+  `pozice` enum('Prodejce','Mechanik','Vedouci','Administrativa') NOT NULL,
+  `mzda` decimal(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
