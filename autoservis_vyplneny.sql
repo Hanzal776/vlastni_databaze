@@ -29,16 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `auto` (
   `auto_id` int(11) NOT NULL,
-  `znacka` varchar(50) DEFAULT NULL,
-  `model` varchar(50) DEFAULT NULL,
-  `rok_vyroby` int(11) DEFAULT NULL,
+  `znacka` varchar(50) NOT NULL,
+  `model` varchar(50) NOT NULL,
+  `rok_vyroby` int(11) NOT NULL,
   `obrazek` longblob DEFAULT NULL,
-  `najeto_km` int(11) DEFAULT NULL,
-  `cena` decimal(10,2) DEFAULT NULL,
-  `palivo` enum('Benzin','Nafta','Elektro','Hybrid') DEFAULT NULL,
+  `najeto_km` int(11) NOT NULL,
+  `cena` decimal(10,2) NOT NULL,
+  `palivo` enum('Benzin','Nafta','Elektro','Hybrid') NOt NULL,
   `barva` varchar(30) DEFAULT NULL,
-  `prevodovka` enum('Manual','Automat') DEFAULT NULL,
-  `dostupne` tinyint(1) DEFAULT NULL
+  `prevodovka` enum('Manual','Automat') NOT NULL,
+  `dostupne` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
