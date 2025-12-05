@@ -3,7 +3,7 @@ Table osoba {
   jmeno varchar(30) [not null]
   prijmeni varchar(30) [not null]
   telefon varchar(20) [unique, not null]
-  email varchar(50) [unique, not null]
+  email varchar(50) [unique, null]
 }
 
 Table zakaznik {
