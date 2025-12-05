@@ -14,7 +14,7 @@ Tento projekt obsahuje jednoduchý návrh databáze, která se dá použít pro 
 - **prodej** – kdo komu co prodal a za kolik  
 - **servis** – servisní zásahy na jednotlivých autech  
 
-### Vztahy (stručně)
+### Vztahy
 - Auto může mít více servisních záznamů, ale jen jeden prodej  
 - Zákazník může nakoupit více aut  
 - Zaměstnanec může provádět servis i prodeje  
