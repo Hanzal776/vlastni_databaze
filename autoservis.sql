@@ -1,58 +1,65 @@
-Table osoba {
-  osoba_id int [pk, not null]
-  jmeno varchar(30) [not null]
-  prijmeni varchar(30) [not null]
-  telefon varchar(20) [unique, not null]
-  email varchar(50) [unique, null]
-}
+CREATE TABLE `osoba` (
+  `osoba_id` int PRIMARY KEY NOT NULL,
+  `jmeno` varchar(30) NOT NULL,
+  `prijmeni` varchar(30) NOT NULL,
+  `telefon` varchar(20) UNIQUE NOT NULL,
+  `email` varchar(50) UNIQUE
+);
 
-Table zakaznik {
-  zakaznik_id int [pk, ref: > osoba.osoba_id, not null]
-  datum_registrace date [not null]
-}
+CREATE TABLE `zakaznik` (
+  `zakaznik_id` int PRIMARY KEY NOT NULL,
+  `datum_registrace` date NOT NULL
+);
 
-Table zamestnanec {
-  zamestnanec_id int [pk, ref: > osoba.osoba_id, not null]
-  pozice enum('Prodejce', 'Mechanik', 'Vedouci', 'Administrativa') [not null]
-  mzda decimal(8,2) [not null]
-}
+CREATE TABLE `zamestnanec` (
+  `zamestnanec_id` int PRIMARY KEY NOT NULL,
+  `pozice` enum(Prodejce,Mechanik,Vedouci,Administrativa) NOT NULL,
+  `mzda` decimal(8,2) NOT NULL
+);
 
-Table auto {
-  auto_id int [pk, not null]
-  znacka varchar(50) [not null]
-  model varchar(50) [not null]
-  rok_vyroby int [not null]
-  obrazek blob [null]
-  najeto_km int [not null]
-  cena decimal(10,2) [not null]
-  palivo enum('Benzin', 'Nafta', 'Elektro', 'Hybrid') [not null]
-  barva varchar(30) [null]
-  prevodovka enum('Manual', 'Automat') [not null]
-  dostupne boolean [not null]
-}
+CREATE TABLE `auto` (
+  `auto_id` int PRIMARY KEY NOT NULL,
+  `znacka` varchar(50) NOT NULL,
+  `model` varchar(50) NOT NULL,
+  `rok_vyroby` int NOT NULL,
+  `obrazek` blob,
+  `najeto_km` int NOT NULL,
+  `cena` decimal(10,2) NOT NULL,
+  `palivo` enum(Benzin,Nafta,Elektro,Hybrid) NOT NULL,
+  `barva` varchar(30),
+  `prevodovka` enum(Manual,Automat) NOT NULL,
+  `dostupne` boolean NOT NULL
+);
 
-Table prodej {
-  prodej_id int [pk, not null]
-  zakaznik_id int [not null]
-  auto_id int [not null]
-  zamestnanec_id int [not null]
-  datum_prodeje datetime [not null]
-  cena_prodeje decimal(10,2) [not null]
-}
+CREATE TABLE `prodej` (
+  `prodej_id` int PRIMARY KEY NOT NULL,
+  `zakaznik_id` int NOT NULL,
+  `auto_id` int NOT NULL,
+  `zamestnanec_id` int NOT NULL,
+  `datum_prodeje` datetime NOT NULL,
+  `cena_prodeje` decimal(10,2) NOT NULL
+);
 
-Table servis {
-  servis_id int [pk, not null]
-  auto_id int [not null]
-  zamestnanec_id int [not null]
-  popis text [not null]
-  cena decimal(8,2) [not null]
-  datum_servisu datetime [not null]
-  typ_ukonu enum('Garanční', 'Oprava', 'Kontrola', 'Příprava na prodej') [not null]
-}
+CREATE TABLE `servis` (
+  `servis_id` int PRIMARY KEY NOT NULL,
+  `auto_id` int NOT NULL,
+  `zamestnanec_id` int NOT NULL,
+  `popis` text NOT NULL,
+  `cena` decimal(8,2) NOT NULL,
+  `datum_servisu` datetime NOT NULL,
+  `typ_ukonu` enum(Garanční,Oprava,Kontrola,Příprava na prodej) NOT NULL
+);
 
-Ref: prodej.zakaznik_id > zakaznik.zakaznik_id
-Ref: prodej.auto_id > auto.auto_id
-Ref: prodej.zamestnanec_id > zamestnanec.zamestnanec_id
+ALTER TABLE `zakaznik` ADD FOREIGN KEY (`zakaznik_id`) REFERENCES `osoba` (`osoba_id`);
 
-Ref: servis.auto_id > auto.auto_id
-Ref: servis.zamestnanec_id > zamestnanec.zamestnanec_id
+ALTER TABLE `zamestnanec` ADD FOREIGN KEY (`zamestnanec_id`) REFERENCES `osoba` (`osoba_id`);
+
+ALTER TABLE `prodej` ADD FOREIGN KEY (`zakaznik_id`) REFERENCES `zakaznik` (`zakaznik_id`);
+
+ALTER TABLE `prodej` ADD FOREIGN KEY (`auto_id`) REFERENCES `auto` (`auto_id`);
+
+ALTER TABLE `prodej` ADD FOREIGN KEY (`zamestnanec_id`) REFERENCES `zamestnanec` (`zamestnanec_id`);
+
+ALTER TABLE `servis` ADD FOREIGN KEY (`auto_id`) REFERENCES `auto` (`auto_id`);
+
+ALTER TABLE `servis` ADD FOREIGN KEY (`zamestnanec_id`) REFERENCES `zamestnanec` (`zamestnanec_id`);
